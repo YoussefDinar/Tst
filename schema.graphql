@@ -1,0 +1,36 @@
+type Query {
+    getOrderById(orderId: ID!): Order
+}
+
+type Mutation {
+    createOrder(order: OrderInput!): Order
+    updateOrder(orderId: ID!, order: OrderInput!): Order
+    deleteOrder(orderId: ID!): DeleteOrderResponse
+}
+
+type Order {
+    id: ID!
+    customerId: String!
+    items: [Item!]!
+    totalAmount: Float!
+}
+
+type Item {
+    productId: String!
+    quantity: Int!
+}
+
+input OrderInput {
+    customerId: String!
+    items: [ItemInput!]!
+    totalAmount: Float!
+}
+
+input ItemInput {
+    productId: String!
+    quantity: Int!
+}
+
+type DeleteOrderResponse {
+    success: Boolean!
+}
